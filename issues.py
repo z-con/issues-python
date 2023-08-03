@@ -42,6 +42,7 @@ def main():
         repo_input = re.sub('/+', '/', repo_input)
         repo_input = repo_input.rstrip('/')
         repo_input = repo_input.lstrip('/')
+        #test gh configuration - disregard comment
 
         if repo_input.lower() == 'q':
             break
