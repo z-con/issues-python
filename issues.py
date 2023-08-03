@@ -1,4 +1,5 @@
 import requests
+import textwrap
 
 def get_issues(user, repo):
     url = f"https://api.github.com/repos/{user}/{repo}/issues"
@@ -11,7 +12,22 @@ def get_issues(user, repo):
 def print_issues(issues):
     if issues is not None:
         for issue in issues:
-            print(f"Title: {issue['title']}\nURL: {issue['html_url']}\nState: {issue['state']}\n")
+            print("+{}+".format("-" * 74))
+            title_lines = textwrap.wrap(issue['title'], width=65)
+            url_lines = textwrap.wrap(issue['html_url'], width=65)
+            body_lines = textwrap.wrap(issue['body'], width=65)
+            print("| State: {:65} |".format(issue['state']))
+            print("| Title: {:65} |".format(title_lines[0]))
+            for line in title_lines[1:]:
+                print("|        {:65} |".format(line))
+            print("| URL:   {:65} |".format(url_lines[0]))
+            for line in url_lines[1:]:
+                print("|        {:65} |".format(line))
+            print("| Body:  {:65} |".format(body_lines[0]))
+            for line in body_lines[1:]:
+                print("|        {:65} |".format(line))
+            print("+{}+".format("-" * 74))
+            print("\n")
     else:
         print("No issues found or the repository does not exist.")
 
