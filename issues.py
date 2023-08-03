@@ -1,5 +1,6 @@
 import requests
 import textwrap
+import re
 
 def get_issues(user, repo):
     url = f"https://api.github.com/repos/{user}/{repo}/issues"
@@ -34,11 +35,16 @@ def print_issues(issues):
 def main():
     while True:
         repo_input = input("Please enter a repository in the format username/repo or 'q' to quit: ")
+        repo_input = re.sub('[^a-zA-Z0-9_\-/.]', '', repo_input)
+        repo_input = repo_input.rstrip('/')
+
         if repo_input.lower() == 'q':
             break
 
         try:
             user, repo = repo_input.split('/')
+            if not user or not repo:
+                raise ValueError
         except ValueError:
             print("Invalid format. Please use the format 'username/repo'")
             continue
