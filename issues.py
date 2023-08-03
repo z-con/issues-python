@@ -18,13 +18,17 @@ def print_issues(issues):
             url_lines = textwrap.wrap(issue['html_url'], width=65)
             body_lines = textwrap.wrap(issue['body'], width=65)
             print("| State: {:65} |".format(issue['state']))
+            print('|' + ' ' * 74 + '|')
             print("| Title: {:65} |".format(title_lines[0]))
+            print('|' + ' ' * 74 + '|')
             for line in title_lines[1:]:
                 print("|        {:65} |".format(line))
             print("| URL:   {:65} |".format(url_lines[0]))
+            print('|' + ' ' * 74 + '|')
             for line in url_lines[1:]:
                 print("|        {:65} |".format(line))
             print("| Body:  {:65} |".format(body_lines[0]))
+            print('|' + ' ' * 74 + '|')
             for line in body_lines[1:]:
                 print("|        {:65} |".format(line))
             print("+{}+".format("-" * 74))
