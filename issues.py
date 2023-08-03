@@ -34,7 +34,7 @@ def print_issues(issues):
 
 def main():
     while True:
-        repo_input = input("Please enter a repository in the format username/repo or 'q' to quit: ")
+        repo_input = input("Please enter a repository in the format user/repo or 'q' to quit: ")
         repo_input = re.sub('[^a-zA-Z0-9_\-/.]', '', repo_input)
         repo_input = re.sub('/+', '/', repo_input)
         repo_input = repo_input.rstrip('/')
@@ -48,7 +48,7 @@ def main():
             if not user or not repo:
                 raise ValueError
         except ValueError:
-            print("Invalid format. Please use the format 'username/repo'")
+            print("Invalid format. Please use the format 'user/repo'")
             continue
 
         issues = get_issues(user, repo)
