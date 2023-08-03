@@ -36,7 +36,9 @@ def main():
     while True:
         repo_input = input("Please enter a repository in the format username/repo or 'q' to quit: ")
         repo_input = re.sub('[^a-zA-Z0-9_\-/.]', '', repo_input)
+        repo_input = re.sub('/+', '/', repo_input)
         repo_input = repo_input.rstrip('/')
+        repo_input = repo_input.lstrip('/')
 
         if repo_input.lower() == 'q':
             break
